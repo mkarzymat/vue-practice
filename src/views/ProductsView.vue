@@ -12,6 +12,10 @@ export default {
     fetchProducts() {
       axios.get('/auth/products').then(({data}) => {
         console.log(data)
+      }).catch(error => {
+        if(error.response.status === 403) {
+          this.$router.push({name: 'login'})
+        }
       })
     }
   }
