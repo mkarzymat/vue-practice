@@ -6,7 +6,8 @@ import App from './App.vue'
 import router from './router'
 import { lenguages } from './i18n'
 import { defaultLocale } from './i18n'
-import { createI18n, useI18n } from 'vue-i18n'
+import {createI18n} from 'vue-i18n'
+import {useI18n} from 'vue-i18n'
 
 const massages = Object.assign(lenguages)
 
