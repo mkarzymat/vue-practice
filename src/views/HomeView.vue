@@ -1,11 +1,20 @@
 <template>
   <main class="mt-32">
-    <h1 class="f-med">{{ t("title") }}</h1>
+    <h1 class="f-med">{{ $t("nav.home") }}</h1>
   </main>
 </template>
 
-<script setup>
-import {useI18n} from 'vue-i18n'
+<script>
+import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n({useScope: 'global'}) 
+
+export default {
+    setup() {
+        const { t } = useI18n({ useScope: "global" });
+
+        return {
+            t
+        };
+    }
+}
 </script>

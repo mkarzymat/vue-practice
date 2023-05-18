@@ -1,3 +1,25 @@
 {
-    "title": "Дом"
+    "login": {
+        "login": "Вход",
+        "btn": "Войти",
+        "email": "адрес эл. почты",
+        "password": "пароль"
+    },
+    "nav": {
+        "home": "Главная",
+        "products": "Товары",
+        "logout": "Выйти"
+    },
+    "card": {
+        "stock": "Запас",
+        "discount": "Скидка",
+        "learnMore": "Подробнее"
+    },
+    "products": {
+        "tehno": "Технологии",
+        "perfume": "Парфюм",
+        "skincare": "Уход за кожей",
+        "groceries": "Продукты",
+        "decorative": "Для декора"
+    }
 }

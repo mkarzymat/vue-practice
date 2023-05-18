@@ -12,12 +12,12 @@
                 </div>
                 <div class="">
                     <h4 class="f-med">
-                    Stock: {{ stock }}
+                        {{ $t('card.stock') }}: {{ stock }}
                     </h4>
                 </div>
                 <div class="">
                     <h4 class="flex f-sBold">
-                        Discount / &nbsp;
+                        {{ $t('card.discount') }} / &nbsp;
                     <p class="text-red-600">{{ discount }}%</p> 
                     </h4>
                 </div>
@@ -27,7 +27,7 @@
                     $ {{ price }}
                     </h4>
                   </div>
-                <button class="f-med btn">Learn More</button>
+                <button class="f-med btn">{{ $t('card.learnMore') }}</button>
                 </div>
                 <div class="">
                     <h4 class="f-reg mb-5">

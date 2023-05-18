@@ -1,3 +1,25 @@
 {
-    "title": "home"
+    "login": {
+        "login": "Log in",
+        "btn": "Login",
+        "email": "email",
+        "password": "password"
+    },
+    "nav": {
+        "home": "Home",
+        "products": "Products",
+        "logout": "Logout"
+    },
+    "card": {
+        "stock": "Stock",
+        "discount": "Discount",
+        "learnMore": "Learn More"
+    },
+    "products": {
+        "tehno": "Technologies",
+        "perfume": "Perfume",
+        "skincare": "Skincare",
+        "groceries": "Groceries",
+        "decorative": "Decorative"
+    }
 }

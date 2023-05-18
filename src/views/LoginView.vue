@@ -1,10 +1,10 @@
 <template>
   <div>
     <form @submit.prevent="submit" class="flex flex-col gap-5 rounded-lg defaultShadow p-5 w-80 h-72 mt-60">
-      <h2 class="f-sBold text-xl my-3">Login</h2>
-      <input v-model="form.username" type="text" class="f-med py-2 px-3" placeholder="email">
-      <input v-model="form.password" type="password" class="f-med py-2 px-3" placeholder="password">
-      <button class="btn" type="submit">Login</button>
+      <h2 class="f-sBold text-xl my-3">{{ $t('login.login') }}</h2>
+      <input v-model="form.username" type="text" class="f-med py-2 px-3" :placeholder="$t('login.email')">
+      <input v-model="form.password" type="password" class="f-med py-2 px-3" :placeholder="$t('login.password')">
+      <button class="btn" type="submit">{{ $t('login.btn') }}</button>
     </form>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
         localStorage.setItem('id', data.id)
         console.log(data)
         
-        this.$router.push({ name: "home" });
+        this.$router.push({ name: "products" });
       })
     }
   }

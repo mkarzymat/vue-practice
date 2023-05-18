@@ -1,7 +1,7 @@
 <template>
   <div class="products mt-32">
     <div class="mb-10">
-      <h2 class="f-sBold text-2xl">Technologies</h2>
+      <h2 class="f-sBold text-2xl">{{ $t('products.tehno') }}</h2>
     </div>
     <div class="productGrid">
       <CardView v-for="res in teh" 
@@ -17,7 +17,7 @@
     </div>
 
     <div class="mt-14 mb-10">
-      <h2 class="f-sBold text-2xl">Perfume</h2>
+      <h2 class="f-sBold text-2xl">{{ $t('products.perfume') }}</h2>
     </div>
     <div class="productGrid">
       <CardView v-for="res in perfume" 
@@ -33,11 +33,11 @@
     </div>
 
     <div class="mt-14 mb-10">
-      <h2 class="f-sBold text-2xl">Cream</h2>
+      <h2 class="f-sBold text-2xl">{{ $t('products.skincare') }}</h2>
     </div>
     <div class="productGrid">
-      <CardView v-for="res in cream" 
-        :key="res.cream" 
+      <CardView v-for="res in skincare" 
+        :key="res.skincare" 
         :img="res.images[1]"
         :title="res.title"
         :price="res.price"
@@ -49,11 +49,11 @@
     </div>
 
     <div class="mt-14 mb-10">
-      <h2 class="f-sBold text-2xl">Diet Foods</h2>
+      <h2 class="f-sBold text-2xl">{{ $t('products.groceries') }}</h2>
     </div>
     <div class="productGrid">
-      <CardView v-for="res in dietFoods" 
-        :key="res.dietFoods" 
+      <CardView v-for="res in groceries" 
+        :key="res.groceries" 
         :img="res.images[1]"
         :title="res.title"
         :price="res.price"
@@ -65,7 +65,7 @@
     </div>
 
     <div class="mt-14 mb-10">
-      <h2 class="f-sBold text-2xl">Decorative</h2>
+      <h2 class="f-sBold text-2xl">{{ $t('products.decorative') }}</h2>
     </div>
     <div class="productGrid">
       <CardView v-for="res in decorative" 
@@ -98,8 +98,8 @@ export default {
         return {
             teh: [],
             perfume: [],
-            cream: [],
-            dietFoods: [],
+            skincare: [],
+            groceries: [],
             decorative: [],
             error: []
         }
@@ -109,9 +109,9 @@ export default {
             axios.get("/auth/products").then(({ data }) => {
                 const products = data.products;
                 this.teh = products.filter(pr => pr.id < 11);
-                this.perfume = products.filter(pr => pr.id > 10 && pr.id < 17);
-                this.cream = products.filter(pr => pr.id > 16 && pr.id < 21);
-                this.dietFoods = products.filter(pr => pr.id > 20 && pr.id < 25);
+                this.perfume = products.filter(pr => pr.id > 10 && pr.id < 16);
+                this.skincare = products.filter(pr => pr.id > 15 && pr.id < 21);
+                this.groceries = products.filter(pr => pr.id > 20 && pr.id < 25);
                 this.decorative = products.filter(pr => pr.id > 25 && pr.id < 30);
                 console.log(products);
 
@@ -120,6 +120,8 @@ export default {
                 }
             }).catch(error => {
                 if (error.response.status === 403) {
+                    this.$router.push({ name: "login" });
+                }else if (error.response.status === 401) {
                     this.$router.push({ name: "login" });
                 }
             });
