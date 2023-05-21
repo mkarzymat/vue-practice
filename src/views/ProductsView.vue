@@ -106,26 +106,29 @@ export default {
     },
     methods: {
         fetchProducts() {
-            axios.get("/auth/products").then(({ data }) => {
-                const products = data.products;
+            axios.get("/auth/products")
+            .then(data => {
+                const products = data.products
                 this.teh = products.filter(pr => pr.id < 11);
                 this.perfume = products.filter(pr => pr.id > 10 && pr.id < 16);
                 this.skincare = products.filter(pr => pr.id > 15 && pr.id < 21);
                 this.groceries = products.filter(pr => pr.id > 20 && pr.id < 25);
                 this.decorative = products.filter(pr => pr.id > 25 && pr.id < 30);
                 console.log(products);
-
-                return {
-                  products
-                }
-            }).catch(error => {
-                if (error.response.status === 403) {
-                    this.$router.push({ name: "login" });
-                }else if (error.response.status === 401) {
-                    this.$router.push({ name: "login" });
-                }
-            });
+            })
         }
     },
+    setup() {
+
+      return {
+      }
+    }
 }
 </script>
+<!-- .catch(error => {
+                if (error.response.status === 403) {
+                    this.$router.push({name: 'login'})
+                }else if (error.response.status === 401) {
+                    this.$router.push({name: 'login'})
+                }
+            }); -->

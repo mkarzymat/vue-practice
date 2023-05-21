@@ -26,7 +26,8 @@ export default {
   methods: {
     submit() {
       console.log('auth')
-      axios.post('/auth/login', this.form).then(({data}) => {
+      axios.post('/auth/login', this.form)
+      .then(data => {
         localStorage.setItem('token', data.token)
         localStorage.setItem('id', data.id)
         console.log(data)

@@ -1,4 +1,5 @@
 import axios from "axios"
+import router from "../router";
 
 axios.defaults.baseURL = 'https://dummyjson.com';
 
@@ -8,17 +9,19 @@ axios.interceptors.request.use(config => {
     return config
 });
 
-// axios.interceptors.response.use(response => {
-//     return response;
-// }, error => {
-//     if (error.response.status === 401) {
-//         store.dispatch('logout')
-//         delete axios.defaults.headers.common['Authorization']
-//         router.push({name: 'Login'})
-//     }
-//
-//     return Promise.reject(error);
-// });
+
+axios.interceptors.response.use(({data}) => {
+    return data
+},error => {
+    if (error.response.status === 401) {
+        console.log('401');
+    }else if (error.response.status === 403) {
+        router.push({ name: "login" });
+    }else if (error.response.status === 400) {
+        console.log('400');
+    }
+    return error
+})
 
 
 export default axios
