@@ -14,11 +14,12 @@
         </option>
       </select>
      </div>
-        <div class="flex gap-7" v-if="!num">
+        <div class="flex gap-7" >
             <RouterLink to="/login" class="f-med">{{ $t('login.btn') }}</RouterLink>
         </div>
-      <div class="flex gap-7" v-else>
-        <p class="f-med cursor-pointer">{{ massage }}</p>
+      <div class="flex gap-7" >
+        <!-- <p class="f-med cursor-pointer">{{ massage }}</p> -->
+        <p class="f-med cursor-pointer">{{ store.data.firstName }}</p>
         <a href="#" class="f-med cursor-pointer" @click="clear">{{ $t('nav.logout') }}</a>
       </div> 
      </div>
@@ -27,57 +28,26 @@
 </template>
 
 <script>
-// import { onMounted, ref } from 'vue';
+import { store } from '../stores/store';
 
-// export default {
-//     name: 'NavView',
+export default {
+    name: 'NavView',
 
-//     data() {
-//       return {
-//         showVisable: false
-//       }
-//     },
+    data() {
+      // const num = localStorage.getItem('id')
+      return {
+        store
+        // num
+      }
+    },
 
-//     methods: { 
-//       clear() {
-//         localStorage.clear()
-//       }
-//     },
+    methods: {
+      clear() {
+        localStorage.clear()
+      }
+    },
 
-//     setup() {
-//         const massage = ref('')
-//         const num = localStorage.getItem('id')
-
-//         onMounted( async() => {
-
-//             fetch('https://dummyjson.com/users/' + num)
-//             .then(res => res.json())
-//             .then(user => {
-//               let firstName = user.firstName
- 
-//               massage.value = firstName
-
-//               console.log(firstName);
-//             })
-//         })
-
-//         return {
-//             massage,
-//             num
-            
-//         }
-//     },
-
-//     setup2() {
-//       const num = localStorage.getItem('id')
-//       const token = localStorage.getItem('token')
-
-//       return {
-//         num,
-//         token
-//       }
-//     },
-// }
+}
 </script>
 
 <style scoped>

@@ -11,6 +11,7 @@
 
 <script>
 import axios from '../api/axios'
+import { store } from '../stores/store'
 
 
 export default {
@@ -31,6 +32,7 @@ export default {
         localStorage.setItem('token', data.token)
         localStorage.setItem('id', data.id)
         console.log(data)
+        store.data = data
         
         this.$router.push({ name: "products" });
       })

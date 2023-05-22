@@ -1,85 +1,88 @@
 <template>
-  <div class="products mt-32">
-    <div class="mb-10">
-      <h2 class="f-sBold text-2xl">{{ $t('products.tehno') }}</h2>
-    </div>
-    <div class="productGrid">
-      <CardView v-for="res in teh" 
-        :key="res.teh" 
-        :img="res.images[1]"
-        :title="res.title"
-        :price="res.price"
-        :category="res.category"
-        :description="res.description"
-        :discount="res.discountPercentage"
-        :stock="res.stock"
-      />
-    </div>
+  <main>
+    <div class=""></div>
+    <div class="products mt-32">
+      <div class="mb-10">
+        <h2 class="f-sBold text-2xl">{{ $t('products.tehno') }}</h2>
+      </div>
+      <div class="productGrid">
+        <CardView v-for="res in teh" 
+          :key="res.teh" 
+          :img="res.images[1]"
+          :title="res.title"
+          :price="res.price"
+          :category="res.category"
+          :description="res.description"
+          :discount="res.discountPercentage"
+          :stock="res.stock"
+        />
+      </div>
 
-    <div class="mt-14 mb-10">
-      <h2 class="f-sBold text-2xl">{{ $t('products.perfume') }}</h2>
-    </div>
-    <div class="productGrid">
-      <CardView v-for="res in perfume" 
-        :key="res.perfume" 
-        :img="res.images[1]"
-        :title="res.title"
-        :price="res.price"
-        :category="res.category"
-        :description="res.description"
-        :discount="res.discountPercentage"
-        :stock="res.stock"
-      />
-    </div>
+      <div class="mt-14 mb-10">
+        <h2 class="f-sBold text-2xl">{{ $t('products.perfume') }}</h2>
+      </div>
+      <div class="productGrid">
+        <CardView v-for="res in perfume" 
+          :key="res.perfume" 
+          :img="res.images[1]"
+          :title="res.title"
+          :price="res.price"
+          :category="res.category"
+          :description="res.description"
+          :discount="res.discountPercentage"
+          :stock="res.stock"
+        />
+      </div>
 
-    <div class="mt-14 mb-10">
-      <h2 class="f-sBold text-2xl">{{ $t('products.skincare') }}</h2>
-    </div>
-    <div class="productGrid">
-      <CardView v-for="res in skincare" 
-        :key="res.skincare" 
-        :img="res.images[1]"
-        :title="res.title"
-        :price="res.price"
-        :category="res.category"
-        :description="res.description"
-        :discount="res.discountPercentage"
-        :stock="res.stock"
-      />
-    </div>
+      <div class="mt-14 mb-10">
+        <h2 class="f-sBold text-2xl">{{ $t('products.skincare') }}</h2>
+      </div>
+      <div class="productGrid">
+        <CardView v-for="res in skincare" 
+          :key="res.skincare" 
+          :img="res.images[1]"
+          :title="res.title"
+          :price="res.price"
+          :category="res.category"
+          :description="res.description"
+          :discount="res.discountPercentage"
+          :stock="res.stock"
+        />
+      </div>
 
-    <div class="mt-14 mb-10">
-      <h2 class="f-sBold text-2xl">{{ $t('products.groceries') }}</h2>
-    </div>
-    <div class="productGrid">
-      <CardView v-for="res in groceries" 
-        :key="res.groceries" 
-        :img="res.images[1]"
-        :title="res.title"
-        :price="res.price"
-        :category="res.category"
-        :description="res.description"
-        :discount="res.discountPercentage"
-        :stock="res.stock"
-      />
-    </div>
+      <div class="mt-14 mb-10">
+        <h2 class="f-sBold text-2xl">{{ $t('products.groceries') }}</h2>
+      </div>
+      <div class="productGrid">
+        <CardView v-for="res in groceries" 
+          :key="res.groceries" 
+          :img="res.images[1]"
+          :title="res.title"
+          :price="res.price"
+          :category="res.category"
+          :description="res.description"
+          :discount="res.discountPercentage"
+          :stock="res.stock"
+        />
+      </div>
 
-    <div class="mt-14 mb-10">
-      <h2 class="f-sBold text-2xl">{{ $t('products.decorative') }}</h2>
+      <div class="mt-14 mb-10">
+        <h2 class="f-sBold text-2xl">{{ $t('products.decorative') }}</h2>
+      </div>
+      <div class="productGrid">
+        <CardView v-for="res in decorative" 
+          :key="res.decorative" 
+          :img="res.images[1]"
+          :title="res.title"
+          :price="res.price"
+          :category="res.category"
+          :description="res.description"
+          :discount="res.discountPercentage"
+          :stock="res.stock"
+        />
+      </div>
     </div>
-    <div class="productGrid">
-      <CardView v-for="res in decorative" 
-        :key="res.decorative" 
-        :img="res.images[1]"
-        :title="res.title"
-        :price="res.price"
-        :category="res.category"
-        :description="res.description"
-        :discount="res.discountPercentage"
-        :stock="res.stock"
-      />
-    </div>
-  </div>
+  </main>
 </template>
 
 <script>

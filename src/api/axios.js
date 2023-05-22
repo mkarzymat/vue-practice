@@ -1,5 +1,5 @@
 import axios from "axios"
-import router from "../router";
+import router from "../router"
 
 axios.defaults.baseURL = 'https://dummyjson.com';
 
@@ -17,6 +17,7 @@ axios.interceptors.response.use(({data}) => {
         console.log('401');
     }else if (error.response.status === 403) {
         router.push({ name: "login" });
+        console.log('403');
     }else if (error.response.status === 400) {
         console.log('400');
     }
