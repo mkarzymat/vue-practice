@@ -15,13 +15,14 @@ axios.interceptors.response.use(({data}) => {
 },error => {
     if (error.response.status === 401) {
         console.log('401');
-    }else if (error.response.status === 403) {
-        router.push({ name: "login" });
+        router.push({name: 'login'})
+    } else if (error.response.status === 403) {
         console.log('403');
-    }else if (error.response.status === 400) {
+        router.push({ name: "login" });
+    } else if (error.response.status === 400) {
         console.log('400');
     }
-    return error
+    return Promise.reject(error);
 })
 
 

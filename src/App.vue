@@ -12,6 +12,8 @@
 import {  RouterView } from 'vue-router'
 import NavView from './components/NavView.vue'
 import { useI18n } from 'vue-i18n'
+import {useAuthStore} from "./stores/auth";
+import axios from "./api/axios";
 
 export default {
   name: 'AppView',
@@ -25,6 +27,21 @@ export default {
           t,
           RouterView
       };
+  },
+  created() {
+    this.initAuthUser()
+  },
+  methods: {
+    initAuthUser() {
+      if(!localStorage.getItem('token')) {
+        this.$router.push({name: 'login'})
+      } else if (!useAuthStore().getUser && localStorage.getItem('userId')) {
+        axios.get(`/auth/users/${localStorage.getItem('userId')}`)
+            .then(data => {
+              useAuthStore().setUser(data)
+            })
+      }
+    }
   }
 }
 </script>

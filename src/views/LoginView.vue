@@ -11,7 +11,7 @@
 
 <script>
 import axios from '../api/axios'
-import { store } from '../stores/store'
+import { useAuthStore } from "../stores/auth";
 
 
 export default {
@@ -21,20 +21,22 @@ export default {
       form: {
         username: 'kminchelle',
         password: '0lelplR',
-      }
+      },
     }
   },
   methods: {
     submit() {
-      console.log('auth')
       axios.post('/auth/login', this.form)
       .then(data => {
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('id', data.id)
         console.log(data)
-        store.data = data
+
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('userId', data.id)
+        useAuthStore().setUser(data)
         
         this.$router.push({ name: "products" });
+      }).catch(error => {
+        console.log(error)
       })
     }
   }

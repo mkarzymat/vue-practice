@@ -14,13 +14,12 @@
         </option>
       </select>
      </div>
-        <div class="flex gap-7" >
-            <RouterLink to="/login" class="f-med">{{ $t('login.btn') }}</RouterLink>
-        </div>
-      <div class="flex gap-7" >
-        <!-- <p class="f-med cursor-pointer">{{ massage }}</p> -->
-        <p class="f-med cursor-pointer">{{ store.data.firstName }}</p>
-        <a href="#" class="f-med cursor-pointer" @click="clear">{{ $t('nav.logout') }}</a>
+      <div v-if="!useAuthStore().getUser" class="flex gap-7" >
+          <RouterLink to="/login" class="f-med">{{ $t('login.btn') }}</RouterLink>
+      </div>
+      <div v-else class="flex gap-7" >
+        <p class="f-med cursor-pointer">{{ useAuthStore().getUser.firstName }}</p>
+        <a href="#" class="f-med cursor-pointer" @click="logout">{{ $t('nav.logout') }}</a>
       </div> 
      </div>
     </div>
@@ -28,22 +27,19 @@
 </template>
 
 <script>
-import { store } from '../stores/store';
+import {useAuthStore} from "../stores/auth";
 
 export default {
     name: 'NavView',
 
-    data() {
-      // const num = localStorage.getItem('id')
-      return {
-        store
-        // num
-      }
-    },
-
     methods: {
-      clear() {
-        localStorage.clear()
+      useAuthStore,
+      logout() {
+        localStorage.removeItem('token')
+        localStorage.removeItem('userId')
+        useAuthStore().setUser(null)
+
+        this.$router.push({ name: "login" })
       }
     },
 
