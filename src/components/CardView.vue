@@ -65,13 +65,14 @@ export default {
     ],
     methods: {
         setProductId() {
-            const pushProduct = this.$router.push({ path: "/product" });
-
-            useProductStore().setId(this.id)
-
-            setTimeout( function () {
-                pushProduct
-            },1000)
+          this.$router.push({name: 'product', params: {id: this.id}})
+            // const pushProduct = this.$router.push({ path: "/product" });
+            //
+            // useProductStore().setId(this.id)
+            //
+            // setTimeout( function () {
+            //     pushProduct
+            // },1000)
         }
     }
 }

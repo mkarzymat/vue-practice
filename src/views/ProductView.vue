@@ -65,7 +65,8 @@ export default {
     },
     methods: {
         fetchProducts() {
-                const productId = useProductStore().getId
+                // const productId = useProductStore().getId
+                const productId = this.$route.params.id
 
                 axios.get("/products/" + productId)
                 .then(response => {
