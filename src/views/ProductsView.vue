@@ -8,6 +8,8 @@
       <div class="productGrid">
         <CardView v-for="res in teh" 
           :key="res.teh" 
+
+          :productId="res.id"
           :img="res.images[1]"
           :title="res.title"
           :price="res.price"
@@ -26,6 +28,8 @@
           :key="res.perfume" 
           :img="res.images[1]"
           :title="res.title"
+          
+          :productId="res.id"
           :price="res.price"
           :category="res.category"
           :description="res.description"
@@ -42,6 +46,8 @@
           :key="res.skincare" 
           :img="res.images[1]"
           :title="res.title"
+          
+          :productId="res.id"
           :price="res.price"
           :category="res.category"
           :description="res.description"
@@ -58,6 +64,8 @@
           :key="res.groceries" 
           :img="res.images[1]"
           :title="res.title"
+          
+          :productId="res.id"
           :price="res.price"
           :category="res.category"
           :description="res.description"
@@ -74,6 +82,8 @@
           :key="res.decorative" 
           :img="res.images[1]"
           :title="res.title"
+          
+          :productId="res.id"
           :price="res.price"
           :category="res.category"
           :description="res.description"
@@ -104,7 +114,7 @@ export default {
             skincare: [],
             groceries: [],
             decorative: [],
-            error: []
+            productId: []
         }
     },
     methods: {
@@ -117,6 +127,7 @@ export default {
                 this.skincare = products.filter(pr => pr.id > 15 && pr.id < 21);
                 this.groceries = products.filter(pr => pr.id > 20 && pr.id < 25);
                 this.decorative = products.filter(pr => pr.id > 25 && pr.id < 30);
+                this.productId = products;
                 console.log(products);
             })
         }
@@ -128,10 +139,3 @@ export default {
     }
 }
 </script>
-<!-- .catch(error => {
-                if (error.response.status === 403) {
-                    this.$router.push({name: 'login'})
-                }else if (error.response.status === 401) {
-                    this.$router.push({name: 'login'})
-                }
-            }); -->

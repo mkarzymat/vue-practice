@@ -21,6 +21,7 @@ axios.interceptors.response.use(({data}) => {
         router.push({ name: "login" });
     } else if (error.response.status === 400) {
         console.log('400');
+        
     }
     return Promise.reject(error);
 })

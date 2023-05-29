@@ -1,4 +1,24 @@
 <template>
+  <div class="flex flex-col-reverse gap-4 fixed right-3.5 top-56">
+  <TransitionGroup
+    name="list"
+    class="natification_animate"
+  >
+      <div 
+        v-for="natification in form.natifications"
+        :key="natification"
+        class="flex justify-between items-center px-6 py-4 gap-4 rounded-lg defaultShadow bg-red-500 text-white"
+      >
+        <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden" v-if="natification.icon === exclamation">
+          <img class="w-9/12" src="../../public/icons/!2.png" alt="">
+        </div>
+        <div class="w-40">
+          <p class="f-med">{{ natification.error }}</p>
+        </div>
+      </div>
+  </TransitionGroup>
+        
+    </div>
   <div>
     <form @submit.prevent="submit" class="flex flex-col gap-5 rounded-lg defaultShadow p-5 w-80 h-72 mt-60">
       <h2 class="f-sBold text-xl my-3">{{ $t('login.login') }}</h2>
@@ -16,11 +36,15 @@ import { useAuthStore } from "../stores/auth";
 
 export default {
   name: 'LoginView',
+  components: {
+  },
   data() {
     return {
       form: {
         username: 'kminchelle',
         password: '0lelplR',
+        natifications: [],
+        
       },
     }
   },
@@ -31,48 +55,53 @@ export default {
         console.log(data)
 
         localStorage.setItem('token', data.token)
-        localStorage.setItem('userId', data.id)
+        localStorage.setItem('id', data.id)
         useAuthStore().setUser(data)
         
         this.$router.push({ name: "products" });
       }).catch(error => {
-        console.log(error)
+        const nat = this.form.natifications
+        const time = Date.now().toLocaleString()
+
+        if (error.response.status === 400) {
+          setTimeout( function () {
+            nat.splice(nat.length -1, 1)
+          },3000)
+          this.form.natifications.push({ error: 'Пользователь не найден', id: time })
+        } else if (error.response.status === 401){
+          setTimeout( function () {
+            nat.splice(nat.length -1)
+          },3000)
+          this.form.natifications.unshift({ error: `Вы неправильно ввели имя пользователя или пароль`, icon: 'exclamation' })
+        }
       })
     }
   }
 }
 </script>
 
+<style scoped>
 
-<!-- <style scoped>
-.form {
-display: flex;
-flex-direction: column;
-gap: 20px;
-width: 200px;
-height: 230px;
-border: 1px solid grey;
-background-color: #fff;
-border-radius: 10px;
-padding: 20px;
-margin-top: 12%;
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(200px);
 }
-
-.title {
-margin: 10px;
-text-align: center;
-font-family: Arial, Helvetica, sans-serif;
+.list-enter-to,
+.list-leave-from {
+  opacity: 1;
+  transform: translateX(0);
 }
-
-.inputs {
-padding: 7px 10px;
-border-radius: 5px;
-border: 1px solid grey;
+.list-enter-active {
+  transition: all .3s;
 }
-
-.signin_btn {
-padding: 10px 20px;
-border-radius: 5px;
-border: 1px solid grey;
+.list-leave-to {
+  transform: translateX(280px);
+  transition: all 1s;
+  opacity: 0;
 }
-</style> -->
+.list-move,
+.list-move-to {
+  transition: all .3s;
+}
+</style>

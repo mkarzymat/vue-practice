@@ -90,3 +90,7 @@ border-radius: 10px;
 height: 50px;
 }.select > option {
 }
+
+.defaultBorder {
+  border: 1px solid #0eaa00;
+}

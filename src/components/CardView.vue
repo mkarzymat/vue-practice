@@ -27,10 +27,13 @@
                     $ {{ price }}
                     </h4>
                   </div>
-                <button class="f-med btn">{{ $t('card.learnMore') }}</button>
+                <button class="f-med btn" @click="setProductId">
+                    <!-- {{ productId }} -->
+                    <p @click="setProductId">{{ $t('card.learnMore') }}</p>
+                </button>
                 </div>
                 <div class="">
-                    <h4 class="f-reg mb-5">
+                    <h4 class="f-reg mb-5 text-sm">
                     {{ description }}
                     </h4>
                 </div>
@@ -39,8 +42,16 @@
 </template>
 
 <script>
+import { useProductStore } from '../stores/product'
+
 export default {
     name: 'this-Card',
+    data() {
+        const id = this.productId
+        return {
+            id
+        }
+    },
     props: [
         'title',
         'img',
@@ -49,8 +60,20 @@ export default {
         'category',
         'description',
         'discount',
-        'stock'
-    ]
+        'stock',
+        'productId',
+    ],
+    methods: {
+        setProductId() {
+            const pushProduct = this.$router.push({ path: "/product" });
+
+            useProductStore().setId(this.id)
+
+            setTimeout( function () {
+                pushProduct
+            },1000)
+        }
+    }
 }
 </script>
 
