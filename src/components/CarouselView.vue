@@ -1,6 +1,6 @@
 <template>
-    <Carousel >
-    <Slide v-for="slide in 38" :key="slide">
+    <Carousel :autoplay="2000">
+    <Slide v-for="slide in 4" :key="slide">
       <div class="carousel__item">{{ slide }}</div>
     </Slide>
 
@@ -25,6 +25,9 @@
   </script>
   
   <style>
+  .carousel {
+    width: 600px;
+  }
   .carousel__item {
     min-height: 400px;
     width: 100%;

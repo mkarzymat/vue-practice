@@ -1,6 +1,6 @@
 <template> 
     <main class="flex mt-32 w-5/6">
-        <div class="flex justify-between rounded-lg p-5 shadow-md w-full ">
+        <div v-if="data" class="flex justify-between rounded-lg p-5 shadow-md w-full ">
             <div class=" defaultShadow max-w-xl h-auto rounded-lg overflow-hidden">
                 <img class="w-full" :src="data.images[2]" alt="">
             </div>
@@ -19,7 +19,7 @@
                 
                     <div class="flex flex-col gap-8 w-24">
                         <p class="f-sBold text-2xl text-right">{{ data.price }} $</p>
-                        <button class="btn">Buy</button>
+                        <button class="btn" @click="buy">Buy</button>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@ export default {
     },
     data() {
         return {
-            data: []
+            data: null
         }
     },
     methods: {
@@ -51,7 +51,13 @@ export default {
                 this.data = response
                 console.log(response)
                 });
-        }
+        },
+      buy() {
+        this.$notify({
+          title: "Important message",
+          text: "Hello user!",
+        });
+      }
         
     },
 }

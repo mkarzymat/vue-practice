@@ -1,12 +1,15 @@
 <template>
-  <header class="bg-white shadow-md w-full fixed">
-    <NavView/>
-  </header>
-  <NatificationView :natification="natification"/>
+  <div>
+    <header class="bg-white shadow-md w-full fixed">
+      <NavView/>
+    </header>
+<!--    <NatificationView :natification="natification"/>-->
 
-  <section class="flex justify-center w-full">
-    <RouterView />
-  </section>
+    <section class="flex justify-center w-full">
+      <RouterView />
+    </section>
+    <notifications />
+  </div>
 </template>
 
 <script>
@@ -15,18 +18,18 @@ import NavView from './components/NavView.vue'
 import { useI18n } from 'vue-i18n'
 import {useAuthStore} from "./stores/auth";
 import axios from "./api/axios";
-import NatificationView from './components/NatificationView.vue';
+// import NatificationView from './components/NatificationView.vue';
 
 
 export default {
   name: 'AppView',
   components: {
           NavView,
-          NatificationView
+          // NatificationView
   },
   data() {
     return {
-      natification: []
+      // natification: []
     }
   },
   setup() {
