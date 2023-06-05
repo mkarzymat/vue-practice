@@ -1,6 +1,5 @@
 <template> 
     <main class="flex mt-32 w-5/6">
-        <!-- <button @click="fetchProducts">dld</button> -->
         <div class="flex justify-between rounded-lg p-5 shadow-md w-full ">
             <div class=" defaultShadow max-w-xl h-auto rounded-lg overflow-hidden">
                 <img class="w-full" :src="data.images[2]" alt="">
@@ -24,25 +23,6 @@
                     </div>
                 </div>
             </div>
-                        <!-- brand
-                        "Apple"
-                        category
-                        "smartphones"
-                        description
-                        "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ..."
-                        discountPercentage
-                        17.94
-                        id
-                        2
-                        images
-                        price
-                        899
-                        rating
-                        4.44
-                        stock
-                        34
-                        thumbnail
-                        title -->
         
         </div>
     </main>
@@ -50,7 +30,6 @@
 
 <script>
 import axios from '../api/axios'
-import { useProductStore } from '../stores/product'
 
 export default {
     name: 'ProductView',
@@ -65,29 +44,13 @@ export default {
     },
     methods: {
         fetchProducts() {
-                // const productId = useProductStore().getId
                 const productId = this.$route.params.id
 
                 axios.get("/products/" + productId)
                 .then(response => {
                 this.data = response
                 console.log(response)
-
-                console.log(productId)
                 });
-
-            // if (!useProductStore().getId) {
-            //     console.log(null);
-            
-            // } else {
-            //     axios.get("/products/" + productId)
-            //     .then(response => {
-            //     this.data = response
-            //     console.log(response);
-            // })
-
-            
-            
         }
         
     },

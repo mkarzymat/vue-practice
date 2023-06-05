@@ -128,7 +128,6 @@ export default {
                 this.groceries = products.filter(pr => pr.id > 20 && pr.id < 25);
                 this.decorative = products.filter(pr => pr.id > 25 && pr.id < 30);
                 this.productId = products;
-                console.log(products);
             })
         }
     },

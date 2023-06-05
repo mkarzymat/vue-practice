@@ -1,14 +1,21 @@
 <template>
-  <main class="mt-32">
-    <h1 class="f-med">{{ $t("nav.home") }}</h1>
-  </main>
+  <div class="flex justify-center w-full mt-24">
+    <CarouselView/>
+  </div>
 </template>
 
 <script>
+import CarouselView from '../components/CarouselView.vue';
 
 export default {
   name: 'HomeView',
   components: {
+    CarouselView
+  },
+  data() {
+    return {
+      
+    }
   }
 }
 </script>

@@ -6,7 +6,7 @@
         "password": "password"
     },
     "nav": {
-        "home": "Home",
+        "home": "Main",
         "products": "Products",
         "logout": "Logout"
     },

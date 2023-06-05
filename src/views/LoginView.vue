@@ -1,24 +1,5 @@
 <template>
-  <div class="flex flex-col-reverse gap-4 fixed right-3.5 top-56">
-  <TransitionGroup
-    name="list"
-    class="natification_animate"
-  >
-      <div 
-        v-for="natification in form.natifications"
-        :key="natification"
-        class="flex justify-between items-center px-6 py-4 gap-4 rounded-lg defaultShadow bg-red-500 text-white"
-      >
-        <div class="flex justify-center items-center w-12 h-12 rounded-full overflow-hidden" v-if="natification.icon === exclamation">
-          <img class="w-9/12" src="../../public/icons/!2.png" alt="">
-        </div>
-        <div class="w-40">
-          <p class="f-med">{{ natification.error }}</p>
-        </div>
-      </div>
-  </TransitionGroup>
-        
-    </div>
+  <NatificationView :natification="form.natifications"/>
   <div>
     <form @submit.prevent="submit" class="flex flex-col gap-5 rounded-lg defaultShadow p-5 w-80 h-72 mt-60">
       <h2 class="f-sBold text-xl my-3">{{ $t('login.login') }}</h2>
@@ -31,19 +12,21 @@
 
 <script>
 import axios from '../api/axios'
+import NatificationView from '../components/NatificationView.vue';
 import { useAuthStore } from "../stores/auth";
 
 
 export default {
   name: 'LoginView',
   components: {
-  },
+    NatificationView
+},
   data() {
     return {
       form: {
         username: 'kminchelle',
         password: '0lelplR',
-        natifications: [],
+        natifications: []
         
       },
     }
@@ -67,6 +50,7 @@ export default {
           setTimeout( function () {
             nat.splice(nat.length -1, 1)
           },3000)
+          
           this.form.natifications.push({ error: 'Пользователь не найден', id: time })
         } else if (error.response.status === 401){
           setTimeout( function () {
@@ -79,29 +63,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(200px);
-}
-.list-enter-to,
-.list-leave-from {
-  opacity: 1;
-  transform: translateX(0);
-}
-.list-enter-active {
-  transition: all .3s;
-}
-.list-leave-to {
-  transform: translateX(280px);
-  transition: all 1s;
-  opacity: 0;
-}
-.list-move,
-.list-move-to {
-  transition: all .3s;
-}
-</style>
