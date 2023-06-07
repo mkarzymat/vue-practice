@@ -1,7 +1,7 @@
 <template>
-    <Carousel :autoplay="2000">
-    <Slide v-for="slide in 4" :key="slide">
-      <div class="carousel__item">{{ slide }}</div>
+    <Carousel :autoplay="2000" :wrap-around="true">
+    <Slide v-for="name in data.names" :key="name">
+      <div class="carousel__item">{{ name }}</div>
     </Slide>
 
     </Carousel>
@@ -19,6 +19,18 @@
       Carousel,
       Slide
     },
+    data() {
+      return {
+        data: {
+          names: [
+            'alex',
+            'john',
+            'curry',
+            'pool',
+          ] 
+        }
+      }
+    },
     methods: {
     },
   })
@@ -26,7 +38,7 @@
   
   <style>
   .carousel {
-    width: 600px;
+    width: 80%;
   }
   .carousel__item {
     min-height: 400px;

@@ -27,9 +27,12 @@
                     $ {{ price }}
                     </h4>
                   </div>
-                <button class="f-med btn" @click="setProductId">
-                    <p @click="setProductId">{{ $t('card.learnMore') }}</p>
+                <button  @click="setProductData" class="f-med btn">
+                    <p>{{ $t('card.addToCart') }}</p>
                 </button>
+                <!-- <button class="f-med btn" @click="setProductId">
+                    <p @click="setProductId">{{ $t('card.addToCart') }}</p>
+                </button> -->
                 </div>
                 <div class="">
                     <h4 class="f-reg mb-5 text-sm">
@@ -41,13 +44,15 @@
 </template>
 
 <script>
+import { useProductStore } from '../stores/product'
 
 export default {
     name: 'this-Card',
     data() {
-        const id = this.productId
+        const data = this.productData
         return {
-            id
+            quanity: [],
+            data
         }
     },
     props: [
@@ -59,11 +64,37 @@ export default {
         'description',
         'discount',
         'stock',
-        'productId'
+        'productData'
     ],
     methods: {
-        setProductId() {
-          this.$router.push({name: 'product', params: {id: this.id}})
+        setProductData() {
+        this.quanity.push(
+            this.data
+        )
+
+        
+        useProductStore().setData(this.quanity)
+        console.log(useProductStore().getData);
+
+        this.$notify({
+          text: 'Добавлено в карзину'
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //   this.$router.push({name: 'product', params: {id: this.id}})
+        // localStorage.setItem('prodData', this.data.id)
+
         }
     }
 }

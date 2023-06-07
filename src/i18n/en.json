@@ -13,7 +13,7 @@
     "card": {
         "stock": "Stock",
         "discount": "Discount",
-        "learnMore": "Learn More"
+        "addToCart": "Add To Cart"
     },
     "products": {
         "tehno": "Technologies",

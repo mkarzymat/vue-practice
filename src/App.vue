@@ -3,12 +3,11 @@
     <header class="bg-white shadow-md w-full fixed">
       <NavView/>
     </header>
-<!--    <NatificationView :natification="natification"/>-->
 
     <section class="flex justify-center w-full">
       <RouterView />
     </section>
-    <notifications />
+    <notifications classes="notificationClass"></notifications>
   </div>
 </template>
 
@@ -16,20 +15,22 @@
 import {  RouterView } from 'vue-router'
 import NavView from './components/NavView.vue'
 import { useI18n } from 'vue-i18n'
-import {useAuthStore} from "./stores/auth";
+import { useAuthStore } from "./stores/auth";
 import axios from "./api/axios";
-// import NatificationView from './components/NatificationView.vue';
 
 
 export default {
   name: 'AppView',
   components: {
           NavView,
-          // NatificationView
   },
+  props: [
+    'status'
+  ],
   data() {
+     const resStatus = this.status
     return {
-      // natification: []
+      resStatus
     }
   },
   setup() {
@@ -59,19 +60,27 @@ export default {
 </script>
 
 
-    <!-- error() {
-      axios.interceptors.response.use(({data}) => {
-      return data
-      },error => {
-      if (error.response.status === 401) {
-          console.log('401');
-          this.$router.push({name: 'login'})
-      } else if (error.response.status === 403) {
-          console.log('403');
-          this.$router.push({ name: "login" });
-      } else if (error.response.status === 400) {
-          console.log('400');
-      }
-      return Promise.reject(error);
-      })
-    } -->
+<style>
+.notificationClass {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  padding: 14px 18px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border: 1px solid #0eaa00;
+}
+
+.errorNatification {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  padding: 14px 18px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border: 1px solid #aa0000;
+}
+
+.vue-notification-group {
+  margin-top: 8%;
+  margin-right: 1%;
+}
+</style>

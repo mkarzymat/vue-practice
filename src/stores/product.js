@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia'
 
 export const useProductStore = defineStore('productId', {
-    state: () => ({ id: null }),
+    state: () => ({ data: null }),
     getters: {
-        getId: (state) => state.id,
+        getData: (state) => state.data,
     },
     actions: {
-        setId(prodId) {
-            this.id = prodId
-            console.log(this.id);
+        
+        setData(prodData) {
+            this.data = prodData
         },
     },
 })

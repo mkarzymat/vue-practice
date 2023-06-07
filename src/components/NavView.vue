@@ -6,6 +6,13 @@
       <RouterLink to="/products" class="f-med">{{ $t('nav.products') }}</RouterLink>
      </div>
      <div class="flex items-center gap-7">
+      <div class="flex items-center gap-3">
+        <p class="f-med">
+          {{  }}
+        </p>
+        <CartView :click="clickCart"/>
+        <!-- <button class="btn" @click="quantityProducts"></button> -->
+      </div>
      <div class="">
       <select class="f-med select " v-model="$i18n.locale">
         <option class="f-med option" value="en">English
@@ -28,10 +35,27 @@
 
 <script>
 import {useAuthStore} from "../stores/auth";
+import {useProductStore} from "../stores/product";
+import CartView from "./CartView.vue";
 
 export default {
     name: 'NavView',
-
+    props: [
+      'quantityProdProps'
+    ],
+    components: {
+      CartView
+    },
+    created() {
+    },
+    data() {
+      const data = useProductStore().getData
+      // const dataLength = data.length
+      return {
+        data,
+        // dataLength
+      }
+    },
     methods: {
       useAuthStore,
       logout() {
@@ -40,11 +64,11 @@ export default {
         useAuthStore().setUser(null)
 
         this.$router.push({ name: "login" })
+      },
+      clickCart() { 
+        this.$router.push({ name: "cartPages" })
       }
     },
 
 }
 </script>
-
-<style scoped>
-</style>

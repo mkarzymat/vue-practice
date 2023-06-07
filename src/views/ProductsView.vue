@@ -9,7 +9,7 @@
         <CardView v-for="res in teh" 
           :key="res.teh" 
 
-          :productId="res.id"
+          :productData="res"
           :img="res.images[1]"
           :title="res.title"
           :price="res.price"
@@ -29,7 +29,7 @@
           :img="res.images[1]"
           :title="res.title"
           
-          :productId="res.id"
+          :productData="res"
           :price="res.price"
           :category="res.category"
           :description="res.description"
@@ -47,7 +47,7 @@
           :img="res.images[1]"
           :title="res.title"
           
-          :productId="res.id"
+          :productData="res"
           :price="res.price"
           :category="res.category"
           :description="res.description"
@@ -65,7 +65,7 @@
           :img="res.images[1]"
           :title="res.title"
           
-          :productId="res.id"
+          :productData="res"
           :price="res.price"
           :category="res.category"
           :description="res.description"
@@ -78,12 +78,12 @@
         <h2 class="f-sBold text-2xl">{{ $t('products.decorative') }}</h2>
       </div>
       <div class="productGrid">
-        <CardView v-for="res in decorative" 
+        <CardView v-for="res in decorative"   
           :key="res.decorative" 
           :img="res.images[1]"
           :title="res.title"
           
-          :productId="res.id"
+          :productData="res"
           :price="res.price"
           :category="res.category"
           :description="res.description"
@@ -114,7 +114,7 @@ export default {
             skincare: [],
             groceries: [],
             decorative: [],
-            productId: []
+            productData: []
         }
     },
     methods: {
@@ -127,7 +127,7 @@ export default {
                 this.skincare = products.filter(pr => pr.id > 15 && pr.id < 21);
                 this.groceries = products.filter(pr => pr.id > 20 && pr.id < 25);
                 this.decorative = products.filter(pr => pr.id > 25 && pr.id < 30);
-                this.productId = products;
+                this.productData = products;
             })
         }
     },
