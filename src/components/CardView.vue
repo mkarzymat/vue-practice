@@ -27,9 +27,12 @@
                     $ {{ price }}
                     </h4>
                   </div>
-                <button  @click="setProductData" class="f-med btn">
+<!--                <button  @click="setProductData" class="f-med btn">-->
+<!--                    <p>{{ $t('card.addToCart') }}</p>-->
+<!--                </button>-->
+                  <button  @click="sendToCart" class="f-med btn">
                     <p>{{ $t('card.addToCart') }}</p>
-                </button>
+                  </button>
                 <!-- <button class="f-med btn" @click="setProductId">
                     <p @click="setProductId">{{ $t('card.addToCart') }}</p>
                 </button> -->
@@ -45,6 +48,7 @@
 
 <script>
 import { useProductStore } from '../stores/product'
+import { useCartStore } from '../stores/cart'
 
 export default {
     name: 'this-Card',
@@ -67,6 +71,9 @@ export default {
         'productData'
     ],
     methods: {
+      sendToCart() {
+        useCartStore().addToCart(this.productData.id)
+      },
         setProductData() {
         this.quanity.push(
             this.data

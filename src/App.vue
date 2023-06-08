@@ -16,6 +16,7 @@ import {  RouterView } from 'vue-router'
 import NavView from './components/NavView.vue'
 import { useI18n } from 'vue-i18n'
 import { useAuthStore } from "./stores/auth";
+import { useCartStore } from "./stores/cart";
 import axios from "./api/axios";
 
 
@@ -43,6 +44,7 @@ export default {
   },
   created() {
     this.initAuthUser()
+    this.initCart()
   },
   methods: {
     initAuthUser() {
@@ -54,6 +56,9 @@ export default {
               useAuthStore().setUser(data)
             })
       }
+    },
+    initCart() {
+      useCartStore().getFromLocalStorage()
     }
   }
 }

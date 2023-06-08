@@ -2,24 +2,24 @@
     <div v-if="$data" class="flex flex-col gap-10 mt-32 w-4/5">
         <div 
         class="flex"
-        v-for="res in productData"
-        :key="res"
+        v-for="product in cartProducts"
+        :key="product.id"
         >
             <div class="flex p-5 w-8/12 rounded-lg  defaultShadow bg-white">
                 <div class="w-44 h-44 rounded-lg defaultBorder">
-                    <img class="w-full rounded-lg" :src="res.images[1]" alt="">
+                    <img class="w-full rounded-lg" :src="product.images[1]" alt="">
                 </div>
                 <div class="flex items-center justify-between gap-2 w-2/3 ml-8 ">
                     <div class="flex flex-col gap-2">
-                        <h3 class="f-sBold" >{{ res.title }}</h3>
-                        <p class="f-med">{{ res.category }}</p>
+                        <h3 class="f-sBold" >{{ product.title }}</h3>
+                        <p class="f-med">{{ product.category }}</p>
                     </div>
                     <div class="flex flex-col items-end gap-6">
-                        <h3 class="f-sBold text-2xl" >{{ res.price }} $</h3>
+                        <h3 class="f-sBold text-2xl" >{{ product.price }} $</h3>
                         <button class="btn">Buy</button>
                     </div>
                 </div>
-                    <div @click="removeProduct" class="flex justify-center items-center rounded w-7 h-7  hover:bg-gray-200 hover:defaultBorder">
+                    <div @click="removeProduct(product.id)" class="flex justify-center items-center rounded w-7 h-7  hover:bg-gray-200 hover:defaultBorder">
                         <img class="w-4 " src='../assets/icons/close.png' alt="">
                     </div>
             </div>
@@ -31,29 +31,37 @@
 </template>
 
 <script>
-import { useProductStore } from '../stores/product';
+import { useCartStore } from '../stores/cart';
+import axios from "../api/axios";
 
 export default {
     name: 'CartPageView',
     props: [
     ],
     created() {
-        this.dataNull()
+        // this.dataNull()
+      this.initData()
     },
     data() {
-        const productData = useProductStore().getData
         return {
-            productData
+          cartProducts: []
         }
     },
     methods: {
-        count() {
-            const count = 0
-            return count + 1
-            
-        },
-        removeProduct() {
-            console.log(useProductStore().getData[0].id);
+      initData() {
+        let productIds = useCartStore().getData
+
+        productIds.forEach(product => {
+          axios.get("/products/" + product)
+              .then(response => {
+                this.cartProducts.push(response)
+              });
+        })
+      },
+        removeProduct(productId) {
+          this.cartProducts = this.cartProducts.filter(item => item.id !== productId)
+          useCartStore().removeFromCart(productId)
+            // console.log(useProductStore().getData[0].id);
         },
         dataNull() {
             if (this.productData == null) {
