@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import axios from "../api/axios";
 import {useAuthStore} from "../stores/auth";
 import {useProductStore} from "../stores/product";
 import CartView from "./CartView.vue";
@@ -47,13 +48,12 @@ export default {
       CartView
     },
     created() {
+      this.getUserData( )
     },
     data() {
       const data = useProductStore().getData
-      // const dataLength = data.length
       return {
-        data,
-        // dataLength
+        data
       }
     },
     methods: {
@@ -67,6 +67,14 @@ export default {
       },
       clickCart() { 
         this.$router.push({ name: "cartPages" })
+      },
+      getUserData() {
+        if (localStorage.getItem('id')) {
+          axios.get("/users/" + localStorage.getItem('id'))
+              .then(response => {
+                useAuthStore().setUser(response)
+          });
+        }
       }
     },
 

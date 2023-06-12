@@ -38,7 +38,8 @@ export default {
         useAuthStore().setUser(data)
         
         this.$router.push({ name: "products" });
-      }).catch(error => {
+      })
+      .catch(error => {
         if (error.response.status === 400) {
           this.$notify({
             text: 'Пользователь не найден !'

@@ -39,8 +39,6 @@ export default {
     props: [
     ],
     created() {
-        // this.dataNull()
-      this.initData()
     },
     data() {
         return {
@@ -61,7 +59,6 @@ export default {
         removeProduct(productId) {
           this.cartProducts = this.cartProducts.filter(item => item.id !== productId)
           useCartStore().removeFromCart(productId)
-            // console.log(useProductStore().getData[0].id);
         },
         dataNull() {
             if (this.productData == null) {
