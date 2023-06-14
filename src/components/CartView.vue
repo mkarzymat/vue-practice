@@ -24,7 +24,7 @@ export default {
     },
   computed: {
     cartQuantity() {
-      return useCartStore().getData
+      return useCartStore().getData.length
     }
   },
     methods: {
